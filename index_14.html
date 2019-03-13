@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>14-</title>
+	<link rel ="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="app">
+		<h2 v-if="isVisible">I'm visible</h2>
+		<h2 v-else>No, I'm not</h2>
+		<button @click="isVisible=!isVisible">Toggle</button>
+		<hr>
+		<h2 v-if="type==='a'">A</h2>
+		<h2 v-else-if="type==='b'">B</h2>
+		<h2 v-else-if="type==='c'">C</h2>
+		<h2 v-else>Not match</h2>
+		<input type="text" v-model="type">
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+	<script>
+		new	Vue({
+			el:'#app',
+			data:{
+				isVisible:true,
+				type:'a'
+			},
+			computed:{
+
+			},
+			methods:{
+
+			}
+		})
+	</script>
+</body></html>
