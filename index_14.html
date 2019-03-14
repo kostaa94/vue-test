@@ -22,8 +22,13 @@
 		</ul>
 		<hr>
 		<ul>
-			<li v-for="object in objects">{{object.name}} {{object.age}}</li>
+			<li v-for="(object,key) of objects">{{key}} {{object.name}} {{object.age}}</li>
 		</ul>
+		<hr>
+		<h2>{{counter}}</h2>
+		<h3>{{result}}</h3>
+		<button @click="add">Incr</button>
+		<button @click="sub">Decr</button>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
 	<script>
@@ -41,13 +46,31 @@
 					{name:'ivan', age:24},
 					{name:'Karl', age:20},
 					{name:'Sergey', age:30}
-				]
+				],
+				counter:0,
+				cond:'Less than 3'
 			},
 			computed:{
-
+				result: function(){
+					return this.counter > 3 ? 'More than 3':'Less than 3'
+				}
 			},
 			methods:{
+				add: function(){
+					this.counter++
+					
+				},
+				sub: function(){
+					this.counter--
+				
+				}
+				
 
+			},
+			watch:{
+				counter: function(val){
+					console.log('watch',val)
+				}
 			}
 		})
 	</script>
