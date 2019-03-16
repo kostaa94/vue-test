@@ -29,11 +29,17 @@
 		<h3>{{result}}</h3>
 		<button @click="add">Incr</button>
 		<button @click="sub">Decr</button>
+		<hr ref=horLine>
+		<h2 ref="head">{{title}}</h2>
+		<button @click="title='Updated title',con_log()">update</button>
+	</div>
+	<div id="app2">
+		<h2>{{title}}</h2>
+		<button @click="update()">Update 1st title</button>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
 	<script>
-		new	Vue({
-			el:'#app',
+	var vue1 = new	Vue({
 			data:{
 				isVisible:true,
 				type:'a',
@@ -48,7 +54,8 @@
 					{name:'Sergey', age:30}
 				],
 				counter:0,
-				cond:'Less than 3'
+				cond:'Less than 3',
+				title:'Title'
 			},
 			computed:{
 				result: function(){
@@ -63,7 +70,11 @@
 				sub: function(){
 					this.counter--
 				
-				}
+				},
+				con_log: function(){
+					console.log(this.$refs)
+					this.$refs.head.style.color='red'
+					this.$refs.horLine.style.color='green'				}
 				
 
 			},
@@ -72,6 +83,18 @@
 					console.log('watch',val)
 				}
 			}
-		})
+		});
+	vue1.$mount('#app');
+		new Vue({
+			el:'#app2',
+			data:{
+				title:'Title2'
+			},
+			methods:{
+				update: function(){
+					vue1.title='Update from 2nd btn'
+				}
+			}
+		});
 	</script>
 </body></html>
